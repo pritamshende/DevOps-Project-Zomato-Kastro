@@ -64,17 +64,6 @@ pipeline {
                 }
             }
         }
-        stage('Docker Scout Image') {
-            steps {
-                script {
-                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker') {
-                        sh 'docker-scout quickview pritamshende/zomato:latest'
-                        sh 'docker-scout cves pritamshende/zomato:latest'
-                        sh 'docker-scout recommendations pritamshende/zomato:latest'
-                    }
-                }
-            }
-        }
         stage ("Deploy to Container") {
             steps {
                 sh '''
